@@ -19,7 +19,7 @@
 #include <dlfcn.h>
 
 #include "gtest/gtest.h"
-#include "ngraph.hpp"
+#include "ngraph/ngraph.hpp"
 #include "log.hpp"
 
 using namespace std;
@@ -37,36 +37,7 @@ TEST(NGraph, loadTest)
     // reset errors
     dlerror();
 
-    // Get the symbols
-    auto createPfn =
-        reinterpret_cast<CreateNGraphObjPfn>(dlsym(ngraphImplLib, "create_ngraph_object"));
-    ASSERT_FALSE(createPfn == nullptr);
-
-    auto destroyPfn =
-        reinterpret_cast<DestroyNGraphObjPfn>(dlsym(ngraphImplLib, "destroy_ngraph_object"));
-    ASSERT_FALSE(destroyPfn == nullptr);
-
-    NGraph* nGraphObj = createPfn();
-
-    INFO << "Call a method on the Object";
-    ASSERT_EQ("NGraph Implementation Object", nGraphObj->get_name());
-    INFO << "Object Name: " << nGraphObj->get_name();
-
-    // Add some parameters
-    const vector<string> TEST_PARAMS = {"param-1", "param-2", "param-3"};
-
-    nGraphObj->add_params(TEST_PARAMS);
-
-    // Get the list of params
-    auto& storedParams = nGraphObj->get_params();
-    EXPECT_EQ(TEST_PARAMS.size(), storedParams.size());
-    for (int i = 0; i < TEST_PARAMS.size(); i++)
-    {
-        EXPECT_EQ(TEST_PARAMS[i], storedParams[i]);
-    }
-
-    INFO << "Destroy the NGraph Object";
-    destroyPfn(nGraphObj);
+    auto cluster_0 = make_shared<ngraph::Function>(4);
 
     dlclose(ngraphImplLib);
 }

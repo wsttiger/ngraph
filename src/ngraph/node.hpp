@@ -17,7 +17,7 @@
 #include <vector>
 #include <set>
 
-#include "ngraph/type.hpp"
+#include "type.hpp"
 
 namespace ngraph
 {

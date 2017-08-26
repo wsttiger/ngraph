@@ -18,9 +18,9 @@
 
 #pragma once
 
-#include "ngraph/element_type.hpp"
-#include "ngraph/function.hpp"
-#include "ngraph/node.hpp"
-#include "ngraph/op.hpp"
-#include "ngraph/shape.hpp"
-#include "ngraph/type.hpp"
+#include "element_type.hpp"
+#include "function.hpp"
+#include "node.hpp"
+#include "op.hpp"
+#include "shape.hpp"
+#include "type.hpp"
