@@ -310,7 +310,7 @@ std::unique_ptr<llvm::Module>
 {
     HeaderSearchOptions& hso = m_compiler->getInvocation().getHeaderSearchOpts();
     std::cout << "JIT Compiler search path" << std::endl;
-    for( auto next_path: hso.UserEntries )
+    for (auto next_path : hso.UserEntries)
     {
         std::cout << "Path: " << next_path.Path << std::endl;
     }
