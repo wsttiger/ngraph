@@ -308,6 +308,13 @@ std::unique_ptr<llvm::Module>
     StaticCompiler::compile(std::unique_ptr<clang::CodeGenAction>& compiler_action,
                             const string& source)
 {
+    HeaderSearchOptions& hso = m_compiler->getInvocation().getHeaderSearchOpts();
+    std::cout << "JIT Compiler search path" << std::endl;
+    for( auto next_path: hso.UserEntries )
+    {
+        std::cout << "Path: " << next_path.Path << std::endl;
+    }
+
     if (!m_precompiled_header_valid && m_precomiled_header_source.empty() == false)
     {
         generate_pch(m_precomiled_header_source);
