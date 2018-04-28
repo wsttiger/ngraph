@@ -18,7 +18,7 @@ if(NOT DEFINED EXTERNAL_PROJECTS_ROOT)
     set(EXTERNAL_PROJECTS_ROOT ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
-if (NGRAPH_UNIT_TEST_ENABLE)
+if (NGRAPH_TEST_ENABLE)
     include(${CMAKE_SOURCE_DIR}/cmake/external_gtest.cmake)
 endif()
 include(${CMAKE_SOURCE_DIR}/cmake/external_json.cmake)

@@ -66,10 +66,17 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 include(var_functions)
 
 option(NGRAPH_UNIT_TEST_ENABLE "Control the building of unit tests" TRUE)
+option(NGRAPH_TEST_ENABLE "Control the building of tests" TRUE)
 option(NGRAPH_TOOLS_ENABLE "Control the building of tool" TRUE)
 option(NGRAPH_CPU_ENABLE "Control the building of the CPU backend" TRUE)
 option(NGRAPH_GPU_ENABLE "Control the building of the GPU backend" FALSE)
 option(NGRAPH_DISTRIBUTED_ENABLE "Add distributed mode to the CPU backend" FALSE)
+
+# NGRAPH_UNIT_TEST_ENABLE deprecated in favor of NGRAPH_TEST_ENABLE
+# and will be removed when users switch
+if (NOT ${NGRAPH_UNIT_TEST_ENABLE})
+    set(NGRAPH_TEST_ENABLE ${NGRAPH_UNIT_TEST_ENABLE})
+endif()
 
 #-----------------------------------------------------------------------------------------------
 # Installation logic...
@@ -211,11 +218,11 @@ add_subdirectory(third-party)
 # - install-related targets.
 add_subdirectory(src)
 
-if (NGRAPH_UNIT_TEST_ENABLE)
+if (NGRAPH_TEST_ENABLE)
     add_subdirectory(test)
-    message(STATUS "unit tests enabled")
+    message(STATUS "test enabled")
 else()
-    message(STATUS "unit tests disabled")
+    message(STATUS "test disabled")
 endif()
 
 add_subdirectory(doc)
