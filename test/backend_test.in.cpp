@@ -30,6 +30,7 @@
 #include "util/all_close.hpp"
 #include "util/ndarray.hpp"
 #include "util/test_tools.hpp"
+#include "test_control.hpp"
 
 using namespace std;
 using namespace ngraph;

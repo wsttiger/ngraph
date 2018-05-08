@@ -50,6 +50,7 @@ set (SRC
     shape.cpp
     reshape_elimination.cpp
     tensor.cpp
+    test_control.cpp
     type_prop.cpp
     util/autodiff/backprop_function.cpp
     util/test_tools.cpp
